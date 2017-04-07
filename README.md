@@ -9,6 +9,8 @@ When user types a city(national capital) name, we try to fetch it's ISO 3166 cou
 So city string is formed by appending to searchText as per the Open weather API requirement. 
 However the listed api, returns older data.
 
+Example: Search (Tokyo) in search bar, it would generate city string like (Tokyo,JP) then it would be passed to OpenWeather city api.
+
 Limitations:
 It only takes Capital City name in search field, if given wrong name it crashes, need to fix it.
 
