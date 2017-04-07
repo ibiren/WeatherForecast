@@ -103,8 +103,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         var dict = self.weatherData?[indexPath.row]
         
-        let weather = (dict?["weather"])!
-        if let time = dict?["dt_txt"] as? String, let weatherInfo = ((weather as! NSArray) as Array)[0]["description"] as? String{
+        if let time = dict?["dt_txt"] as? String, let weatherInfo = ((dict?["weather"] as! NSArray) as Array)[0]["description"] as? String{
             cell.textLabel?.text = "\(time) looks \(weatherInfo)"
         }
         
