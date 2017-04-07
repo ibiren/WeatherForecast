@@ -24,7 +24,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.weatherListView.rowHeight = 60
-        self.weatherListView.register(DataCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+//        self.weatherListView.register(DataCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
         self.weatherData = []
     }
@@ -103,8 +103,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         var dict = self.weatherData?[indexPath.row]
         
+//        if let time = dict?["dt_txt"] as? String, let weatherInfo = ((dict?["weather"] as! NSArray) as Array)[0]["description"] as? String{
+//            cell.textLabel?.text = "\(time) looks \(weatherInfo)"
+//        }
         if let time = dict?["dt_txt"] as? String, let weatherInfo = ((dict?["weather"] as! NSArray) as Array)[0]["description"] as? String{
-            cell.textLabel?.text = "\(time) looks \(weatherInfo)"
+            cell.timestamp.text = time
+            cell.weather.text = weatherInfo
         }
         
         return cell
