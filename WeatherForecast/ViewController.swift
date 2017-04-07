@@ -103,12 +103,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         var dict = self.weatherData?[indexPath.row]
         
+<<<<<<< HEAD
 //        if let time = dict?["dt_txt"] as? String, let weatherInfo = ((dict?["weather"] as! NSArray) as Array)[0]["description"] as? String{
 //            cell.textLabel?.text = "\(time) looks \(weatherInfo)"
 //        }
         if let time = dict?["dt_txt"] as? String, let weatherInfo = ((dict?["weather"] as! NSArray) as Array)[0]["description"] as? String{
             cell.timestamp.text = time
             cell.weather.text = weatherInfo
+=======
+        if let time = dict?["dt_txt"] as? String, let weatherInfo = ((dict?["weather"] as! NSArray) as Array)[0]["description"] as? String{
+            cell.textLabel?.text = "\(time) looks \(weatherInfo)"
+>>>>>>> origin/master
         }
         
         return cell
