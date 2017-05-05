@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 import MBProgressHUD
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -30,56 +28,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let searchText = searchBar.text {
         
-        let urlString = "\(Constants.Service.restcountryBaseUrl)\(searchText)"
+        //Search City
+        let service = ServiceController()
+        service.getCityString(searchText: searchBar.text)
         
-//        showLoadingHUD(loadText: Constants.Message.CheckingISOCountry)
+        //Get weather forecast info
+        self.getWeatherForecastInfo(cityString:self.city!)
+        self.hideLoadingHUD()
         
-        
-        Alamofire.request(urlString).responseJSON { (responseData) -> Void in
-            if((responseData.result.value) != nil) {
-                let swiftyJsonVar = JSON(responseData.result.value!)
-                if let status = swiftyJsonVar["status"].string {
-                    if status == "404" {
-                        self.showLoadingHUD(loadText: Constants.Message.wrongCityEntered )
-                    }
-                }
-                else {
-                    self.showLoadingHUD(loadText: "Success, country ISO code: \(swiftyJsonVar[0]["alpha2Code"].string)")
-                }
-                let isoCountry = swiftyJsonVar[0]["alpha2Code"].string
-                let userText = searchText
-                
-                self.city = String(format:"%@,%@", userText, isoCountry!)
-            }
-            self.hideLoadingHUD()
-            
-            //Get weather forecast info
-            self.getWeatherForecastInfo(cityString:self.city!)
-            self.hideLoadingHUD()
-            }
-        }
     }
     
     private func getWeatherForecastInfo (cityString:String) {
-        let urlString = "\(Constants.Service.baseURL)\(self.city!)&appid=\(Constants.Service.API_KEY)"
         
         self.showLoadingHUD(loadText: Constants.Message.checkingForecast)
         
-        Alamofire.request(urlString).responseJSON { (responseData) -> Void in
-            if((responseData.result.value) != nil) {
-                let swiftyJsonVar = JSON(responseData.result.value!)
-                
-                if let resData = swiftyJsonVar["list"].arrayObject {
-                    self.weatherData = resData as? [[String:AnyObject]]
-                }
-                if (self.weatherData?.count)! > 0 {
-                    self.weatherListView.reloadData()
-                }
-            }
-            self.hideLoadingHUD()
-        }
+        let service = ServiceController()
+        service.getWeather(city: cityString)
+        
+        self.hideLoadingHUD()
+
     }
     
     
