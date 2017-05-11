@@ -10,8 +10,8 @@
 struct Constants {
     
     struct Service {
-        static let API_KEY = "b1b15e88fa797225412429c1c50c122a1"
-        static let baseURL = "http://samples.openweathermap.org/data/2.5/forecast?q="
+        static let API_KEY = "a9864e1a9f943313b7bb4423c3355a11"
+        static let baseURL = "http://api.openweathermap.org/data/2.5/forecast?q="
         static let restcountryBaseUrl = "https://restcountries.eu/rest/v2/capital/"
 
     }
