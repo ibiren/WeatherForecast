@@ -1,4 +1,4 @@
 language: swift
 osx_image: xcode8.3
 script:
-    - xcodebuild clean test -project WeatherForecast.xcodeproj -scheme WeatherForecast -destination "platform=iOS Simulator,name=iPhone 7,OS=10.3" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -quiet
+    - xcodebuild clean test -workspace WeatherForecast.xcworkspace -scheme WeatherForecast -destination "platform=iOS Simulator,name=iPhone 7,OS=10.3" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -quiet
